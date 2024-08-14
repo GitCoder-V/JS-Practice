@@ -1,0 +1,79 @@
+<!--1-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Корни квадратного уравнения</title>
+    <style>
+      .calculator {
+        width: 600px;
+        height: 350px;
+        border: 5px solid #fb8023;
+        border-radius: 16px;
+        background-color: antiquewhite;
+        padding: 0 20px 20px;
+      }
+      input {
+        border-radius: 10px;
+        padding: 8px 18px;
+        width: 200px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 26px;
+      }
+      button {
+        display: inline-block;
+        background-color: #fb8023;
+        color: #ffffff;
+        border: none;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+      }
+      button:hover {
+        cursor: pointer;
+        color: #fff;
+        background-color: #fd9444;
+      }
+      #output {
+        font-size: 18px;
+        line-height: 26px;
+        margin: 16px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h1>Калькулятор квадратных уравнений</h1>
+      <p>
+        <b>Квадранное уравнение </b>
+        - это уравнение вида ax
+        <sup>2</sup>
+        + bx + c = 0.
+      </p>
+      <p>
+        <label>
+          a:
+          <input type="number" id="a" class="calculator-input" />
+        </label>
+      </p>
+      <p>
+        <label>
+          b:
+          <input type="number" id="b" class="calculator-input" />
+        </label>
+      </p>
+      <p>
+        <label>
+          c:
+          <input type="number" id="c" class="calculator-input" />
+        </label>
+      </p>
+      <button onclick="solveQuadratic()" id="btn">Решить</button>
+      <p id="output"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

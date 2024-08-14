@@ -1,0 +1,49 @@
+<!--2-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор проверки тройки Пифагора</title>
+    <style>
+        .calculator {
+            width: 300px;
+            height: 270px;
+            padding: 10px;
+            border: 2px solid blue;
+            border-radius: 5px;
+            background-color: blanchedalmond;
+        }
+        h1{
+            text-align: center;
+            font-size: 20px;
+            margin: 0;
+            font-weight: 400;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(231, 207, 175);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="calculator">
+<h1>Калькулятор проверки тройки Пифагора</h1>
+<p>Введите три натуральных числа:</p>
+<p>
+    <input id="x" type="number">
+</p>
+<p>
+    <input id="y" type="number">
+
+</p>
+<p>
+    <input id="z" type="number">  
+</p>
+<button onclick="numberСheck()" id="btn">Проверить</button>
+<p class="output"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Гороскоп</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        height: 100vh;
+      }
+      .horoscope {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+      }
+      div:nth-child(3) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media (max-width: 768px) {
+        div:nth-child(3) {
+          flex-direction: column;
+        }
+        div:nth-child(3) > div:nth-child(1) {
+          margin-bottom: 20px;
+        }
+      }
+      .input {
+        border-radius: 10px;
+        padding: 8px 18px;
+        width: 200px;
+        background-color: rgb(197, 211, 223);
+      }
+      .result {
+        text-align: center;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="horoscope">
+      <div>
+        <h1>Ваш гороскоп</h1>
+        <p style="font-size: px">
+          Введите дату своего рождения и нажмите Enter. Сайт покажет Ваш
+          гороскоп на сегодня. Выберете другой день и нажмите Enter. Сайт
+          покажет Ваш гороскоп на завтра или послезавтра.
+        </p>
+        <div>
+          <div>
+            <input
+              type="text"
+              class="input"
+              id="dateInput"
+              placeholder="Введите дату в формате ДД.ММ"
+              style="width: 230px"
+            />
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="test" id="now" checked />
+              Сегодня
+            </label>
+            <label>
+              <input type="radio" name="test" id="tomorrow" />
+              Завтра
+            </label>
+            <label>
+              <input type="radio" name="test" id="nextday" />
+              Послезавтра
+            </label>
+          </div>
+        </div>
+        <p id="result" class="result"></p>
+      </div>
+    </div>
+
+    <script>
+      let horoscope = {
+        Водолей: {
+          now: "У Водолея все хорошо!",
+          tomorrow: "Водолей получит премию!",
+          nextday: "Водолея ждет удачный день!",
+        },
+        Лев: {
+          now: "Сегодня у Льва всё получится!",
+          tomorrow: "У Льва хорошее настроение!",
+          nextday: "Удачный день у Льва для покупок!",
+        },
+      };
+
+      function getZodiacSign(day, month) {
+        if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
+          return "Водолей";
+        } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+          return "Рыбы";
+        } else if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) {
+          return "Овен";
+        } else if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) {
+          return "Телец";
+        } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+          return "Близнецы";
+        } else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
+          return "Рак";
+        } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+          return "Лев";
+        } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+          return "Дева";
+        } else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
+          return "Весы";
+        } else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) {
+          return "Скорпион";
+        } else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) {
+          return "Стрелец";
+        } else if ((month == 12 && day >= 22) || (month == 1 && day <= 19)) {
+          return "Козерог";
+        }
+      }
+
+      function determineZodiacSign() {
+        let input = document.getElementById("dateInput").value;
+        let [day, month] = input.split(".").map(Number);
+
+        let now = document.getElementById("now"),
+          tomorrow = document.getElementById("tomorrow"),
+          nextday = document.getElementById("nextday");
+
+        let result = document.getElementById("result");
+        if (
+          isNaN(day) ||
+          isNaN(month) ||
+          day < 1 ||
+          day > 31 ||
+          month < 1 ||
+          month > 12
+        ) {
+          result.textContent = "Неверный формат даты";
+          return;
+        }
+
+        let zodiacSign = getZodiacSign(day, month);
+
+        let horoscopeText;
+        if (now.checked) {
+          horoscopeText = `Гороскоп на сегодня: ${horoscope[zodiacSign].now}`;
+        } else if (tomorrow.checked) {
+          horoscopeText = `Гороскоп на завтра: ${horoscope[zodiacSign].tomorrow}`;
+        } else if (nextday.checked) {
+          horoscopeText = `Гороскоп на послезавтра: ${horoscope[zodiacSign].nextday}`;
+        }
+
+        result.textContent = `${zodiacSign}. ${horoscopeText}`;
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          let input = document.getElementById("dateInput").value;
+          if (input !== "") {
+            determineZodiacSign();
+          } else {
+            alert("Введите дату своего рождения.");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!--1-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Угадай число</title>
+    <style>
+      .calculator {
+        width: 270px;
+        height: 250px;
+        padding: 10px;
+        border: 2px solid #234567;
+        border-radius: 10px;
+        background-color: antiquewhite;
+      }
+      h1 {
+        margin: 0;
+      }
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h1>Угадай число</h1>
+      <p>
+        Компьютер загадает число <br />
+        ты должен угадать
+      </p>
+      <p>
+        <button onclick="guessNumber()" id="button">Начать игру</button>
+      </p>
+      <p>Какое число загадал компьютер?</p>
+      <p>
+        <input id="valueInp" type="number" placeholder="Введите число" />
+        <button class="button">Проверить</button>
+        <audio id="audio1">
+          <source src="audio/pole-chudes-priz.mp3">
+        </audio>
+        <audio id="audio2">
+          <source src="audio/6_sto-k-odnomu-ne-pra_ilnyy-ot_et.mp3">
+        </audio>
+      </p>
+      <p id="output"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

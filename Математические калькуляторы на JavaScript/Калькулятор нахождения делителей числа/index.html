@@ -1,0 +1,41 @@
+<!--3-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Делитель числа</title>
+    <style>
+      .calculator {
+        width: 300px;
+        height: 30%;
+        border: 2px solid #547889;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: rgb(236, 229, 229);
+      }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      #button:hover {
+        cursor: pointer;
+        background-color: rgb(211, 199, 199);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h1>Калькулятор нахождения делителей числа</h1>
+      <p>Введите число:</p>
+      <p>
+        <input id="num" type="number" />
+      </p>
+      <p>
+        <button id="button">Найти</button>
+      </p>
+      <p id="result"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

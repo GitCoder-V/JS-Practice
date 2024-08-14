@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Экранная клавиатура</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="keyboard-wrapper" id="keyboard-box">
+       <h1>Экранная клавиатура</h1>
+        <div class="text-output">
+            <textarea class="text-frea" id="text-field" placeholder="Введите текст..."></textarea>
+        </div>
+
+      <div class="keyboard" id="keyboard">
+        <div class="row">
+          <button id="key" data-ru="ё" data-en="`" data-en1="~"></button>
+          <button id="key" data-ru="1" data-ru1="!" data-en="1" data-en1="!"></button>
+          <button id="key" data-ru="2" data-ru1='"' data-en="2" data-en1="@"></button>
+          <button id="key" data-ru="3" data-ru1="№" data-en="3" data-en1="#"></button>
+          <button id="key" data-ru="4" data-ru1=";" data-en="4" data-en1="$"></button>
+          <button id="key" data-ru="5" data-ru1="%" data-en="5" data-en1="%"></button>
+          <button id="key" data-ru="6" data-ru1=":" data-en="6" data-en1="^"></button>
+          <button id="key" data-ru="7" data-ru1="?" data-en="7" data-en1="&"></button>
+          <button id="key" data-ru="8" data-ru1="*" data-en="8" data-en1="*"></button>
+          <button id="key" data-ru="9" data-ru1="(" data-en="9" data-en1="("></button>
+          <button id="key" data-ru="0" data-ru1=")" data-en="0" data-en1=")"></button>
+          <button id="key" data-ru="-" data-ru1="_" data-en="-" data-en1="_"></button>
+          <button id="key" data-ru="=" data-ru1="+" data-en="=" data-en1="+"></button>
+          <button id="keyBackSpace" style="width: 95px;">&#9003;</button>
+        </div>
+        <div class="row">
+          <button id="keyTab" style="width: 95px;">⇥ Tab</button>
+          <button id="key" data-ru="й" data-en="q"></button>
+          <button id="key" data-ru="ц" data-en="w"></button>
+          <button id="key" data-ru="у" data-en="e"></button>
+          <button id="key" data-ru="к" data-en="r"></button>
+          <button id="key" data-ru="е" data-en="t"></button>
+          <button id="key" data-ru="н" data-en="y"></button>
+          <button id="key" data-ru="г" data-en="u"></button>
+          <button id="key" data-ru="ш" data-en="i"></button>
+          <button id="key" data-ru="щ" data-en="o"></button>
+          <button id="key" data-ru="з" data-en="p"></button>
+          <button id="key" data-ru="х" data-en="[" data-en1="{"></button>
+          <button id="key" data-ru="ъ" data-en="]" data-en1="}"></button>
+          <button id="key" data-ru="/" data-ru1="|" data-en="|" data-en1="\"></button>
+        </div>
+        <div class="row">
+          <button id="keyCapsLock" style="width: 125px;">⇪ Caps</button>
+          <button id="key" data-ru="ф" data-en="a"></button>
+          <button id="key" data-ru="ы" data-en="s"></button>
+          <button id="key" data-ru="в" data-en="d"></button>
+          <button id="key" data-ru="а" data-en="f"></button>
+          <button id="key" data-ru="п" data-en="g"></button>
+          <button id="key" data-ru="р" data-en="h"></button>
+          <button id="key" data-ru="о" data-en="j"></button>
+          <button id="key" data-ru="л" data-en="k"></button>
+          <button id="key" data-ru="д" data-en="l"></button>
+          <button id="key" data-ru="ж" data-en=":" data-en1=";"></button>
+          <button id="key" data-ru="э" data-en="'" data-en1='"'></button>
+          <button id="keyEnter" style="width: 100px;">Enter</button>
+        </div>
+        <div class="row">
+          <button id="keyCapsLock" style="width: 150px;">⇧ Shift</button>
+          <button id="key" data-ru="я" data-en="z"></button>
+          <button id="key"  data-ru="ч" data-en="x"></button>
+          <button id="key" data-ru="с" data-en="c"></button>
+          <button id="key" data-ru="м" data-en="v"></button>
+          <button id="key" data-ru="и" data-en="b"></button>
+          <button id="key" data-ru="т" data-en="n"></button>
+          <button id="key" data-ru="ь" data-en="m"></button>
+          <button id="key" data-ru="б" data-en="," data-en1="<"></button>
+          <button id="key" data-ru="ю" data-en="." data-en1=">"></button>
+          <button id="key" data-ru="," data-ru1="." data-en="?" data-en1="/"></button>
+          <button id="keyCapsLock" style="width: 150px;">⇧ Shift</button>
+        </div>
+        <div class="row">
+          <button id="toggleLanguageBtn"></button>
+          <button id="keyClean" style="width: 120px; font-size: 20px;" >Очистить</button>
+          <button id="keySpace" style="width: 620px;"></button>
+          <button id="keySelectAlltext" style="width: 180px; font-size: 20px;">Выделить все</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!--2-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Угадай ячейку</title>
+    <style type="text/css">
+      .container {
+        border: 2px solid #72a3e2;
+        width: 400px;
+        padding: 10px;
+      }
+      h1 {
+        text-align: center;
+        margin: 0 0 10px 0;
+      }
+      table {
+        width: 400px;
+        border-collapse: collapse;
+        border: 2px solid #000;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+      tr,
+      td {
+        width: 25px;
+        height: 25px;
+        padding: 5px;
+        border: 1px solid green;
+        text-align: center;
+      }
+      button:hover {
+        cursor: pointer;
+        background-color: #a4c3eb;
+      }
+      .clock {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="game">
+      <h1>Угадай ячейку</h1>
+      <p>
+        Компьютер случайным образом запоминает 10 ячеек из этой таблицы. Игроку
+        нужно кликать на ячейки пока он не найдет все загаданные компьютером
+        ячейки. Если вы угадали-ячейка покраситься в зеленый цвет, если нет-то прозвучит сигнал.
+      </p>
+      <audio id="audio1">
+        <source src="audio/6_sto-k-odnomu-ne-pra_ilnyy-ot_et.mp3">
+      </audio>
+      <audio id="audio2">
+        <source src="audio/pole-chudes-priz.mp3">
+      </audio>
+      <button>Пуск</button>
+      <div class="clock" id="clock">00:00</div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

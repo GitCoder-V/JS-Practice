@@ -1,0 +1,67 @@
+<!---->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Площадь круга и длину окружности</title>
+    <style>
+        #calculator {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 10px;
+          width: 300px;
+          height: auto;
+          border: 2px solid slategray;
+          border-radius: 5px;
+          background-color: bisque;
+          padding: 10px;
+        }
+        
+        #radius {
+          grid-column: 1 / 3;
+          justify-self: center;
+        }
+        
+        #btn-area {
+          grid-column: 1 / 2;
+        }
+        #result-area {
+          grid-column: 2 / 3;
+          justify-self: center;
+        }
+        #btn-circumference {
+          grid-column: 1 / 2;
+        }
+        #result-circumference {
+          grid-column: 2 / 3;
+          justify-self: center;
+        }
+      </style>
+</head>
+<body>
+    <div id="calculator">
+        
+            <div id="radius">
+              <input id="inpRadius"
+                type="text"
+                placeholder="Enter radius"
+              />
+            </div>
+            
+        <div id="btn-area">
+          <button id="btnArea" style="font-size: 12px;">area of a circle</button>
+        </div>
+        <div id="result-area">
+          <input id="resultArea" type="text" />
+        </div>
+        <div id="btn-circumference">
+          <button id="btnCircumference" style="font-size: 12px;">circumference</button>
+        </div>
+        <div id="result-circumference">
+          <input id="resultCircumference" type="text" />
+        </div>
+      </div>
+      <script src="script.js"></script>
+</body>
+</html>

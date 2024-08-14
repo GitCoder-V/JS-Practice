@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Линейный календарь</title>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        margin: 5px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      #switch {
+        display: flex;
+        justify-content: center;
+      }
+
+      #switch-date {
+        margin: 0 30px;
+        font-weight: bold;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .current-day {
+        text-align: center;
+        font-weight: bold;
+        color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Календарь</h2>
+      <div id="switch">
+        <button id="prevBtn">&#9668;</button>
+        <div id="switch-date"></div>
+        <button id="nextBtn">&#9658;</button>
+      </div>
+      <ul id="calendar"></ul>
+    </div>
+    <script>
+      let commutator = document.getElementById("switch");
+      let switchDate = document.getElementById("switch-date");
+      let arrowLeft = document.getElementById("prevBtn");
+      let arrowRight = document.getElementById("nextBtn");
+      let calendar = document.getElementById("calendar");
+
+      const date = new Date();
+      let currentMonth = date.getMonth();
+      let currentYear = date.getFullYear();
+
+      function generateCalendar(month, year) {
+        calendar.innerHTML = ""; 
+        switchDate.textContent = getMonthName(month) + " " + year; 
+
+        let daysinMonth = new Date(year, month + 1, 0).getDate();
+        for (let day = 1; day <= daysinMonth; day++) {
+          let li = document.createElement("li");
+          li.textContent = day;
+          if (
+            day === date.getDate() &&
+            month === date.getMonth() &&
+            year === date.getFullYear()
+          ) {
+            li.classList.add("current-day");
+          }
+          calendar.appendChild(li);
+        }
+      }
+
+      function getMonthName(month) {
+        const months = [
+          "Январь",
+          "Февраль",
+          "Март",
+          "Апрель",
+          "Май",
+          "Июнь",
+          "Июль",
+          "Август",
+          "Сентябрь",
+          "Октябрь",
+          "Ноябрь",
+          "Декабрь",
+        ];
+        return months[month];
+      }
+      generateCalendar(currentMonth, currentYear);
+
+      arrowLeft.addEventListener("click", () => {
+        if (currentMonth === 0) {
+          currentMonth = 11;
+          currentYear--;
+        } else {
+          currentMonth--;
+        }
+        generateCalendar(currentMonth, currentYear);
+      });
+
+      arrowRight.addEventListener("click", () => {
+        if (currentMonth === 11) {
+          currentMonth = 0;
+          currentYear++;
+        } else {
+          currentMonth++;
+        }
+        generateCalendar(currentMonth, currentYear);
+      });
+    </script>
+  </body>
+</html>

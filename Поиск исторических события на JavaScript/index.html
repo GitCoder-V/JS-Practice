@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Исторические события</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      #parent {
+        margin: 0 auto;
+        width: 600px;
+      }
+      #input {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      #table {
+        width: 100%;
+      }
+      #table td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent">
+      <input
+        type="number"
+        id="input"
+        placeholder="введите год и нажмите Enter"
+      />
+      <table id="table">
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      let events = {
+        2000: [
+          {
+            date: "20.02.2000",
+            event: "Событие 1",
+            description: "Описание события 1",
+          },
+          {
+            date: "15.05.2000",
+            event: "Событие 2",
+            description: "Описание события 2",
+          },
+        ],
+        2001: [
+          {
+            date: "10.01.2001",
+            event: "Событие 1",
+            description: "Описание события 1",
+          },
+        ],
+      };
+
+      function fillEventsTable(year) {
+        let tableBody = document
+          .getElementById("table")
+          .getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = "";
+
+        if (!(year in events)) {
+          let row = tableBody.insertRow();
+          let cell = row.insertCell(0);
+          cell.colSpan = 3;
+          cell.textContent = `Данные за ${year} не найдены`;
+        } else {
+          events[year].forEach((event) => {
+            let row = tableBody.insertRow();
+
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+
+            cell1.textContent = event.date;
+            cell2.textContent = event.event;
+            cell3.textContent = event.description;
+          });
+        }
+      }
+
+      document.getElementById("input").addEventListener("keydown", function (e) {
+        if (e.code === "Enter") {
+          fillEventsTable(input.value);
+        }
+      });
+    </script>
+  </body>
+</html>

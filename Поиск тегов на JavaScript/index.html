@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Определение значения HTML тега</title>
+    <style>
+      body {
+        background-color: rgb(217, 235, 217);
+      }
+      .site {
+        width: 500px;
+        height: 250px;
+        border: 5px solid #fb8023;
+        border-radius: 16px;
+        background-color: antiquewhite;
+        padding: 0 20px 20px;
+        text-align: center;
+        margin: 0 auto;
+      }
+      input {
+        border-radius: 10px;
+        width: 200px;
+        padding: 5px;
+        font-size: 16px;
+      }
+      #tagDescription {
+        margin-top: 30px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site">
+      <h2>Сайт поиска тегов</h2>
+      <label for="tagInput">Введите имя HTML тега:</label>
+      <input type="text" id="tagInput" onkeydown="checkEnter(event)" />
+      <div id="tagDescription"></div>
+    </div>
+
+    <script>
+      const tagDescriptions = {
+        a: "Определяет ссылку",
+        p: "Определяет абзац текста",
+        li: "Элемент маркированного или нумерованного списка",
+        div: "Определяет блочный элемент",
+        img: "Встраивает изображения в HTML-документ",
+        input: "Создает многофункциональные поля формы",
+      };
+
+      function checkEnter(event) {
+        if (event.key === "Enter") {
+          let tagName = document.getElementById("tagInput").value.toLowerCase();
+          let tagDescription = tagDescriptions[tagName];
+
+          if (tagDescription) {
+            document.getElementById(
+              "tagDescription"
+            ).textContent = `Описание тега <${tagName}>: ${tagDescription}`;
+          } else {
+            document.getElementById(
+              "tagDescription"
+            ).textContent = `Тег <${tagName}> не найден`;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
