@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>-Спойлер-</title>
+    <style>
+      .spoiler:not(.active) {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p>абзац с текстом</p>
+    <p>
+      абзац с текстом
+      <a href="" class="toggle">развернуть спойлер 1</a>
+    </p>
+    <p class="spoiler">скрытый спойлер 1</p>
+
+    <p>абзац с текстом</p>
+
+    <script>
+      document.querySelectorAll(".toggle").forEach((link) => {
+        let spoiler = link.parentElement.nextElementSibling;
+
+        if (spoiler && spoiler.classList.contains("spoiler")) {
+          link.addEventListener("click", function (evt) {
+            spoiler.classList.toggle("active");
+            evt.preventDefault();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
