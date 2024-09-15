@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Игра в города</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #7dc8db;
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: blanchedalmond;
+      }
+      h1 {
+        margin-bottom: 20px;
+        color: #3b5998;
+      }
+      input {
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+        border: 2px solid #8a909e;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        transition: border-color 0.3s;
+      }
+      input:focus {
+        outline: none;
+        border-color: #03344b;
+      }
+      #message {
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #333;
+        background-color: #e7f3fe;
+        border: 1px solid #0e76a8;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .reset-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .reset-button:hover {
+        background-color: #e9d3b9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Игра в города</h1>
+      <input type="text" id="field" placeholder="Введите название города" />
+      <div id="message">Ходит игрок 1</div>
+      <button id="resetButton" class="reset-button">Новая игра</button>
+    </div>
+  </body>
+  <script>
+    function startCityGame() {
+      let cities = [];
+      let currentPlayer = 1;
+      let lastChar = "";
+      let incorrectAttempts = { 1: 0, 2: 0 };
+
+      function showMessage(message) {
+        document.getElementById("message").textContent = message;
+      }
+
+      function handleCityInput(city) {
+        city = city.toLowerCase().trim();
+
+        if (city === "") {
+          showMessage("Введите имя города");
+          incorrectAttempts[currentPlayer]++;
+          return;
+        }
+
+        if (cities.includes(city)) {
+          showMessage("Такой город уже существует");
+          incorrectAttempts[currentPlayer]++;
+          return;
+        }
+
+        if (lastChar && city[0] !== lastChar) {
+          showMessage(
+            `Название города должно начинаться на букву ${lastChar.toUpperCase()} и не повторяться`
+          );
+          incorrectAttempts[currentPlayer]++;
+          return;
+        }
+
+        if (incorrectAttempts[currentPlayer] >= 3) {
+          showMessage(`Игрок ${currentPlayer} проиграл! Игра завершена.`);
+          return;
+        }
+
+        cities.push(city);
+        lastChar = city.slice(-1);
+
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        showMessage(`Ходит игрок ${currentPlayer}`);
+      }
+
+      document
+        .getElementById("field")
+        .addEventListener("keydown", function (evt) {
+          if (evt.key === "Enter") {
+            handleCityInput(evt.target.value);
+            evt.target.value = "";
+            console.log(cities);
+          }
+        });
+
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", function () {
+          cities = [];
+          currentPlayer = 1;
+          lastChar = "";
+          incorrectAttempts = { 1: 0, 2: 0 };
+          showMessage("Игрок 1, введите первый город");
+          document.getElementById("field").value = "";
+        });
+    }
+    startCityGame();
+  </script>
+</html>

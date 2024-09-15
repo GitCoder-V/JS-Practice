@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Игра в города с роботом</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .game-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      h1 {
+        text-align: center;
+        font-style: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      input {
+        padding: 10px;
+        width: calc(100% - 22px);
+        font-size: 16px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      #message {
+        font-style: 16px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #555;
+      }
+      .reset-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+      }
+      .reset-button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container">
+      <h1>Игра в города</h1>
+      <input type="text" id="field" placeholder="Введите название города" />
+      <div id="message">Ходит игрок</div>
+      <button class="reset-button" id="resetButton">Сбросить игру</button>
+    </div>
+    <script>
+      let allCities = [
+        "Москва",
+        "Саратов",
+        "Новосибирск",
+        "Екатеринбург",
+        "Архангельск",
+        "Белгород",
+        "Владивосток",
+        "Грозный",
+        "Донецк",
+        "Елец",
+        "Житомир",
+        "Зеленоград",
+        "Иваново",
+        "Курск",
+        "Липецк",
+        "Мурманск",
+        "Нижний Новгород",
+        "Орёл",
+        "Пенза",
+        "Ростов-на-Дону",
+        "Смоленск",
+        "Тула",
+        "Ульяновск",
+        "Феодосия",
+        "Хабаровск",
+        "Челябинск",
+        "Шахты",
+        "Электросталь",
+        "Южно-Сахалинск",
+        "Ярославль",
+      ].map((city) => city.toLowerCase());
+
+      let cities = [];
+      let currentPlayer = "игрок";
+      let lastChar = "";
+
+      function findCityByLetter(letter) {
+        letter = letter.toLowerCase();
+        return allCities.find((city) => city.startsWith(letter));
+      }
+
+      function showMessage(message) {
+        document.getElementById("message").textContent = message;
+      }
+
+      function handleCityInput(city) {
+        city = city.trim().toLowerCase();
+
+        if (city === "") {
+          showMessage("Введите название города");
+          return;
+        }
+
+        if (cities.includes(city)) {
+          showMessage("Такой город уже существует");
+          return;
+        }
+
+        if (lastChar && city[0] !== lastChar) {
+          showMessage("Такой город уже есть");
+          return;
+        }
+
+        cities.push(city);
+        lastChar = city.slice(-1);
+
+        let matchingCity = findCityByLetter(lastChar);
+        if (matchingCity) {
+          cities.push(matchingCity);
+          lastChar = matchingCity.slice(-1);
+          showMessage(
+            `Робот выбрал город: ${
+              matchingCity.charAt(0).toUpperCase() + matchingCity.slice(1)
+            }. Ходит игрок`
+          );
+        } else {
+          showMessage(
+            "Робот не смог найти город на нужную букву. Вы победили!"
+          );
+        }
+      }
+
+      document
+        .getElementById("field")
+        .addEventListener("keyup", function (event) {
+          if (event.key === "Enter") {
+            handleCityInput(event.target.value);
+            event.target.value = "";
+          }
+        });
+
+      function resetGame() {
+        cities = [];
+        currentPlayer = "игрок";
+        lastChar = "";
+        showMessage("Игра сброшена. Ходит игрок");
+        document.getElementById("field").value = "";
+      }
+
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", function () {
+          resetGame();
+        });
+    </script>
+  </body>
+</html>
